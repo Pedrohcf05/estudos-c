@@ -1,0 +1,23 @@
+vet[TAM]; esse TAM é o tamanho do meu vetor
+por exemplo: vet[3], é um vetor que pode armazenar 3 valores contando desde a posição 0 a (tam - 1).
+
+posso tambem definir o vetor sem tamanho e armazenar quantas coisas eu quiser nele.
+ex: vet[]
+
+eu tenho que definir meu tipo do vetor
+int vet[TAM]
+char vet[TAM] -> vet[3] = {'a','b','c'}
+float vet[TAM]
+
+    Para todo X inteiro e menor que Tamanho do vetor.
+
+para atribuir valores a um vetor ja criado: vet[X] = 10 // X é a posição na qual queremos alocar o valor
+
+para receber um valor de um vetor ja criado: int variavel = vet[X]
+
+para ler um valor dentro de uma posiçao de um vetor: scanf("%d", &vet[X])
+
+para imprimir um valor de uma posição de um vetor: printf("%d", vet[X])
+
+SEMPRE QUE FOR LER LETRAS DO TECLADO TEMOS QUE LIMPAR O BUFFER
+fflush(stdin);

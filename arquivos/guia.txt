@@ -1,0 +1,10 @@
+FILE *teste;
+int n;
+
+teste = fopen("nome do arquivo", "modo");
+
+fclose(teste);
+
+fprintf(f, "%d", n) -> imprime algo em um arquivo.
+
+fscanf(f, "%d", &n) -> Lẽ algo de um arquivo.

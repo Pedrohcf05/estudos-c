@@ -1,0 +1,25 @@
+String é um vetor de char
+
+%s para imprimir strings
+
+Uso o \0 para dizer ao compilador o limite do que ele vai imprimir.
+
+printf("%s", nomeDAString); // imprimir strings sem espaço.
+
+puts(nomeDAString); // imprimir strings com espaços.
+
+para ler strings sem espaços, scanf("%s", nomeDAString);
+
+para ler strings com espaços, fgets(nomeDAString, sizeof(nomeDAStrings), stdin);
+
+while ((c = getchar()) != '\n' && c != EOF); // LIMPA BUFFER
+
+str1[strcspn(str1, "\n")] = '\0'; Retira o \n da string.
+
+strlen() -> Conta o tamanho em bytes, não os caracteres. Ela percorre a string até encontrar o '\0' e retorna o numero do bytes sem contar o '\0'.
+Não retorna o tamanho da array. Se você declarar char string[100] = {'oi'}; o strlen(string) retorna 2.
+Já o sizeof(string) vai retornar 100.
+
+strcpy -> copia uma string de um lugar para outro, incluindo o caractere terminador '\0'.
+strcpy(destino, origem);
+ 

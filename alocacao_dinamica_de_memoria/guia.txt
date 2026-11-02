@@ -1,0 +1,39 @@
+Guia para incluir outros arquivos em outros.
+
+temos a nossa main, por exemplo:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(){
+
+    // chama a função.
+    imprimeOi();
+
+
+    return 0;
+}
+
+nesse exemplo acima nao temos a função escrita no mesmo arquivo da main.
+Por isso vamos importar ela de um arquivo que nós guardamos nossas funcoes, por exemplo o arquivo functions.h
+
+DENTRO DA FUNCTIONS.H:
+
+void imprimeOi(){
+    printf("Oi \n");
+}
+
+agora no novo arquivo da main:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "functions.h"
+
+int main(){
+
+    // chama a função.
+    imprimeOi();
+
+    return 0;
+}

@@ -1,0 +1,63 @@
+Função fseek:
+
+A Função retorna 0 caso sucesso, e diferente de 0 caso contrário
+
+fseek(FILE *fp, long numbytes, int origin);
+
+fp == Apontador do arquivo aberto por fopen
+
+numbytes == número que indica quantos bytes a partir do parametro origin estará o indicador de posição
+
+origin:
+    - SEEK_SET == Início do arquivo
+    - SEEK_CUR == Posição atual
+    - SEEK_END == Final do arquivo
+
+Exemplo:
+
+    //Ler o terceiro inteiro a partir de um arquivo binário.//
+
+        fseek(arq, 2 * sizeof(int), SEEK_SET);
+
+
+
+Função ftell:
+
+A função retorna a posição (em bytes) atual do indicador do arquivo
+
+ftell(FILE *fp);
+
+fp == Apontador do arquivo aberto por fopen
+
+
+
+Função fwrite:
+
+A função retorna o numero de variáveis escritas com sucesso, ou zero caso um erro ocorra
+
+fwrite(void* buffer, size_t numbytes, size_t count, FILE* fp);
+
+    - buffer == é um apontador para a variável que será escrita no arquivo
+
+    - numbytes == indica quantos bytes tem o tipo da variável a ser escrita
+
+    - count == indica quantas variáveis (de tamanho numbyte) serão escritas
+
+    - fp == é o apontador para o arquivo onde serão escritas as variáveis
+
+
+
+
+Função fread:
+
+A função retorna o número de variáveis lidas com sucesso, ou zero caso ocorra um erro.
+
+fread(void* buffer, size_t numbytes, size_t count, FILE* fp);
+
+    - buffer == É um apontador para uma região de memória que receberá as variáveis lidas do arquivo
+
+    - numbytes == é o numero de bytes a serem lidos.
+
+    - count == indica quantas variáveis do tamanho numbytes deverão ser lidas
+
+    - fp == apontador do arquivo de onde as variáveis vão ser lidas

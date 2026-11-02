@@ -1,0 +1,22 @@
+    // Variavel
+
+    int a = 20;
+
+    Temos:
+
+    int *ponteiro;
+
+    ponteiro = &a <-- Ponteiro recebendo o endereço de memoria da variavel b
+
+    *ponteiro = 50; <-- Conteudo apontado por (*ponteiro) recebe o valor 50.
+
+    p( sem asterístico ) -> é o proprio ponteiro. Se voce mexer nele, esta mudando para onde ele aponta.
+
+    *p( com asterístico ) -> é o valor que esta no endereço apontado. Se voce mexer nele, esta mudando o conteudo de x, mesmo sem tocar nele diretamente.
+
+
+    int nums[5] = {10, 20, 30, 40, 50};
+
+    int *p = nums; --> o ponteiro p esta apontando para o nums[0], o primeiro elemento.
+
+    v[i] == *(v + i).

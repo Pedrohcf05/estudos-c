@@ -1,0 +1,25 @@
+matrizes:
+
+matriz[linha][coluna];
+
+Definir sem tamanho tenho que logo depois dizer o que vem dentro da matriz.
+Ex: int vetor = {{1,2}, {3,4}};
+
+OU
+
+Definindo ja com o tamanho.
+Ex: float vetor[2][2] = {{1.1,2.4}, {3.4,5.6}};
+
+Ex2: char vetor[TAM][TAM] = {{'a','b'}, {'c','d'}};
+
+
+Para atribuir valores a uma matriz, fazemos: int matriz[X][Y] = 10;
+
+Para receber um valor de uma matriz já criada: int valor = matriz[X][Y];
+
+Para ler um valor dentro de uma posição da matriz: scanf("%d", &matriz[X][Y]);
+
+Para imprimir um valor de uma posição da matriz: printf("%d", matriz[X][Y]);
+
+        *Sendo X e Y números menores que o tamanho da matriz.*
+
