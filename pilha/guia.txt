@@ -1,0 +1,207 @@
+-> == "Vá até o que este endereço aponta e pegue este campo."
+
+
+Pilha: 
+    - Uma coleção ordenada de itens (estrutura linear)
+    - O final é chamado de topo da Pilha
+    - Itens são inseridos no topo da pilha -> push
+    - Itens são removidos do topo da pilha -> pop
+
+Pilha - implementação estática:
+    - Utiliza um arranjo(array) de elementos de tamanho predefinido
+    - Controlaremos a posição do elemento que esta no topo da pilha
+
+    Modelagem Pilha estática:
+
+    #include <stdio.h>
+    #define MAX 50
+    #define true 1
+    #define false 0
+
+    typedef int bool;
+
+    typedef int TIPOCHAVE;
+
+    typedef struct {
+        TIPOCHAVE chave;
+
+    } REGISTRO;
+
+    typedef struct {
+        REGISTRO A[MAX];
+        int topo;
+
+    }PILHA;
+
+    - Inicialização:
+
+    void inicializaPilha(PILHA* p){
+        p->topo = -1;
+    }
+
+    - Exibição:
+
+    void exibirPilha(PILHA* p){
+        printf("Pilha: \" ");
+        for(int i = p->topo; i >= 0; i-- ){
+            printf("%i ", p->A[i].chave);
+        }
+        printf("\"\n");
+    }
+
+    - Inserção (push):
+
+    bool inserirElementoPilha(PILHA* p, REGISTRO reg){
+        if(p->topo == MAX-1){
+            return false;
+        }
+        p->topo = p->topo + 1; // topo avança uma posição, abrindo espaço para um novo elemento.
+        p->A[p->topo] = reg; // A nova posição que foi aberta recebe o novo elemento "reg".
+        return true;
+    }
+
+    - Exclusão (pop):
+
+    bool excluirElementoPilha(PILHA* p, REGISTRO* reg){
+        if(p->topo == -1) return false;
+        *reg = p->A[p->topo]; // copia o elemento do topo para fora
+        p->topo = p->topo--; // topo recua uma posição
+        return true;
+    }
+
+    - Reinicialização:
+
+    void reinicializarPilha(PILHA* p){
+        p->topo = -1;
+    }
+
+    OBS:
+    - p → ponteiro para PILHA
+    - p->A → o array de REGISTRO
+    - p->A[i] → um REGISTRO
+    - p->A[i].chave → o int dentro dele
+    O que é um array em C, em geral: uma sequência de elementos do mesmo tipo, em posições consecutivas da memória, com tamanho fixo definido na declaração.
+    Você acessa cada elemento pelo índice: A[0], A[1], etc.
+
+Regra Prática:
+
+- Variável struct normal, use "."
+
+    PILHA minha;
+    minha.topo = -1;
+
+- Ponteiro para struct, use "->"
+
+    PILHA* p;
+    p->topo = -1;
+
+
+
+
+Pilha - implementação dinâmica:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define true 1
+#define false 0
+
+typedef int bool;
+
+typedef int TIPOCHAVE;
+
+typedef struct {
+    TIPOCHAVE chave;
+    //outros campos...
+} REGISTRO;
+
+typedef struct aux {
+    REGISTRO reg;     // o dado guardado
+    struct aux* prox; // o endereço do próximo nó
+} ELEMENTO;
+
+typedef ELEMENTO* PONT; // PONT = ponteiro para elemento
+
+typedef struct {
+    PONT topo;  // endereço do nó que esta no topo
+} PILHA;
+
+
+- Inicialização:
+
+void inicializarPilha(PILHA* p){
+    p->topo = NULL;
+}
+
+
+- Retornar números de elementos:
+
+int tamanho(PILHA* p){
+    PONT end = p->topo; // começa no topo
+    int tam = 0;
+    while(end != NULL){ // enquanto nao chega ao fim
+        tam++;   // conta esse nó
+        end = end->prox;   // anda para o proximo nó
+    }
+    return tam;
+}
+
+
+- Verificar se está vazia:
+
+bool estaVazia(PILHA* p){
+    if(p->topo == NULL) return true;
+    return false;
+}
+
+
+- Exibição:
+
+void exibePilha(PILHA* p){
+    PONT end = p->topo;  // começa no topo
+    printf("Pilha: \" ");
+    while(end != NULL){  // enquanto nao chega ao fim
+        printf("%i ", end->reg.chave);  // exibe o elemento
+        end = end->prox  // avança um nó
+    }
+    printf("\" \n");
+}
+
+
+- Inserção (push):
+
+bool inserirElementoPilha(PILHA* p, REGISTRO reg){
+    PONT novo = (PONT) malloc(sizeof(ELEMENTO));
+    if(novo == NULL) return false;
+    novo->reg = reg;  // grava o registro dentro do novo nó
+    novo->prox = p->topo;  //O nó novo passa a apontar para o antigo topo. Assim ele “engata” na frente da lista.
+    p->topo = novo;  //Agora o topo da pilha passa a ser o nó novo.
+    return true;
+}
+
+
+- Exclusão (pop):
+
+bool excluirElementoPilha(PILHA* p, REGISTRO* reg){
+    if(p->topo == NULL) return false;
+    *reg = p->topo->reg;  // pegue o que está dentro do primeiro nó e coloque na variável do chamador
+    PONT apagar = p->topo;  // Guarda o endereço do nó que vai ser removido numa variável auxiliar.
+    p->topo = p->topo->prox;  // O topo passa a ser o segundo nó. Lê o prox do nó atual e coloca em topo
+    free(apagar);  // Devolve ao sistema a memória do nó antigo
+    return true;
+}
+
+
+- Reinicialização:
+
+void reinicializarPilha(PILHA* p){
+    PONT apagar;  // variavel que vai ser apagada
+    PONT posicao = p->topo;  // pego o endereço do topo
+    while(posicao != NULL){
+        apagar = posixao;  // anota o nó
+        posicao = posicao->prox;  // anda para o proximo nó
+        free(apagar); // apaga o nó anotado
+
+    }
+    p->topo = NULL;  // pilha vazia
+}
